@@ -1,5 +1,19 @@
 #  Programacion Integrativa (2023-2024)
 ## Apuntes sobre shell scripting
+- BREs : Expresiones regulares basicas.
+**Ejemplo** : [...]  \(\)  \n  \{n,m\} 
+- EREs : Expresiones regulares extendidas
+**Ejemplo** : [...] {n,m} + ? | ()
+Los caracteres comunes en ambas son `\` `.` `*` `^` `$`.
+El `^` es el inicio de una lineas o string pero en BREs solo es metacaracter al principio de una expresion regular
+El `$` es el fin de una lineas o string pero en BREs solo es metacaracter al final de una expresión regular
+El `\n` hace referencia a lo que esta entre parentesis (la repite)
+El `{n,m }` se repite hace que se repita entre n y m veces 
+
+
+Con EREs se pueden agrupar expresiones regukares usando `( y )` y tambien se pueden
+utilizar difrenetes alternativas como (0|1). Ademas los `^` y `$` son metacaracteres en EREs 
+
 ### Lo basico
 #### Comando sed
 - Comando con el que sustituyes valores en ficheros de texto
@@ -22,6 +36,11 @@ Solucion al ejemplo : sed '2,3!s/foo/FOO/' file_sed (ESTA MAL)
 **Ejemplo** : `grep -on "bar.*bar" file_sed.`  
 Esto va a mostrar las partes de las lineas (con su numero) en donde aparezca dos palabras bar  
 y entre ellas puede haber cualquier tipo de caracter `.` cero o mas veces `*` 
+
+- `grep "h[oò]la"` : devuelve las lineas que entre la h puede haber o con tilde o sin ella
+- `grep "\.\(hola\)\1" cap2` : delvuelve ".holaholahol"
+- `grep "\(hola_\)\1  cap2"` : te busca cualquier cosa con hola
+
 
 Solucion al ejemplo : grep -vwn "foo" file_sed
 
