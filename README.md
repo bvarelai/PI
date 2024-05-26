@@ -154,9 +154,63 @@ TODOS, ESPERO QUE
 SALUDOS!!
 ```
 ## Apuntes sobre pandas
-- Si en el examen nos dan una tabla operaciones que podemos hacer:
-**1.Añadir una columna/fila** :
-**2.Sumar totales por columna/fila** :
-**3.Crear subtables** :
-  
+### Definir un Dataframe
+```bash
+data = { 'comunidad': [ 'Galicia', 'Galicia', 'Galicia', 'Asturias', 'Asturias' ],
+         'año': [2000, 2001, 2002, 2001, 2002],
+         'población': [2731900, 2732926, 2737370, 1075329, 1073971] }
+frame = DataFrame(data)
+frame
+```
+### Mover las columnas
+```bash
+Dataframe(data,columns=['poblacion','comunidad',año]) 
+```
+### Cambiar los indices numericos por letras
+```bash
+frame2 = DataFrame(data, columns=['año', 'comunidad', 'población', 'deuda'],index=['uno', 'dos', 'tres', 'cuatro', 'cinco']) 
+```
+### Recuperar una columna
+```bash
+frame2['comunidad']
+frame2.comunidad
+```
+### Recuperar una fila
+```bash
+frame2.loc['tres']
+frame2['comunidad'].iloc[3] 
+```
+### Modificar un dato
+```bash
+frame2.deuda = 3000
+```
+### Añadir una columna/fila** :
+- Asignando una columna que no existe
+```bash
+frame2['elecciones'] = False
+del frame2['elecciones'] ##Borras la columna
+```
+### Sumar totales por columna/fila** :  
+```bash
+frame2['deuda'].sum() ##por columna
+frame.iloc[2].sum() ##por fila
+frame2['deuda'].mean() ##Hacer media por columna
+```
+### Renombrar una columna
+```bash
+df.rename(columns={"Tipo consumo": "Tipo", "Consumo (kwh)": "kwh"}, inplace=True)
+```
+
+### Crear subtables** :  
+
+### Guardar el Dataframe en un archivo**
+```bash
+import pickle
+with open('df.pkl','wb') as f:  ##f es el archivo y wb el modo de escritura (binario)
+  pickle.dump(df,f)
+```
+### Indexar un Dataframe usando un patron booleano alternante
+```bash
+precio[[false,true]*(744//2)]
+```  
   
