@@ -201,7 +201,7 @@ frame2['deuda'].mean() ##Hacer media por columna
 df.rename(columns={"Tipo consumo": "Tipo", "Consumo (kwh)": "kwh"}, inplace=True)
 ```
 
-### Crear subtables** :  
+### Crear subtablas   
 
 ### Guardar el Dataframe en un archivo**
 ```bash
@@ -220,5 +220,64 @@ ganancias_totales_croissants = croissants['Precio Unitario'].sum()
 ### Ganancias totales de la venta de cada producto
 ganancias_totales = df.groupby('Item')['Precio Unitario'].sum()
 ```
+## Tema orientado a objetos 
+### Ejemplo (Solucion 1º ejercicio)
+```python
+class Number():
+   unit = "Kilograms"
+   value = 0
+   def __init__(self, value : int):
+      self.value = value
 
-  
+def main() :
+    n1=Number(10)
+    print(str(n1.value)+" "+Number.unit)
+    Number.unit="Grams"
+    n2=Number(20)
+    print(str(n1.value)+" "+Number.unit)
+    print(str(n2.value)+" "+Number.unit)
+
+if __name__ == "__main__":
+    main()
+```
+- El metodo `__init__` es el constructor, `__del__` el destructor, `__add__` el de Suma , `__or__` es OR
+y `__repr__` es para imprimir como str. Todos estos son los **metodos magicos**.
+```python
+def __init__(self,x):
+    self.x=x
+def __add__(self,other):
+    return MyClass(self.x+other.x)
+def __repr__(self):
+    return "My value of x is: "+str(self.x)
+```
+- Los **metodos estaticos** son aquellos que podemos llamar a traves del el nombre de la clase o de una instancia,
+los **metodos de clase** son inguales que estos pero estan ligados a una clase
+```python
+class MyClass:
+  __ninstances=0
+  def __init__(self):
+    type(self).__ninstances+=1
+  @staticmethod
+  def nInstances():
+    return MyClass.__ninstances
+```
+```python
+  @classmethod
+  def nInstances(cls):
+    return cls.__ninstances
+```
+```python
+  @property
+  def x(self):
+    return self.__x
+  @x.setter 
+  def x(self,x):
+    if x<0:
+      self.__x=0
+    elif x > 10:
+      self.__x=10
+    else:
+      self.__x=x
+```
+
+
