@@ -212,5 +212,13 @@ with open('df.pkl','wb') as f:  ##f es el archivo y wb el modo de escritura (bin
 ### Indexar un Dataframe usando un patron booleano alternante
 ```bash
 precio[[false,true]*(744//2)]
-```  
+```
+### Sumar una columna filtrando previamente por filas
+```bash
+croissants = df[df.Item == 'Croissant']
+ganancias_totales_croissants = croissants['Precio Unitario'].sum()
+### Ganancias totales de la venta de cada producto
+ganancias_totales = df.groupby('Item')['Precio Unitario'].sum()
+```
+
   
