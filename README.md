@@ -155,7 +155,7 @@ SALUDOS!!
 ```
 ## Apuntes sobre pandas
 ### Definir un Dataframe
-```bash
+```python
 data = { 'comunidad': [ 'Galicia', 'Galicia', 'Galicia', 'Asturias', 'Asturias' ],
          'año': [2000, 2001, 2002, 2001, 2002],
          'población': [2731900, 2732926, 2737370, 1075329, 1073971] }
@@ -163,41 +163,48 @@ frame = DataFrame(data)
 frame
 ```
 ### Mover las columnas
-```bash
+```python
 Dataframe(data,columns=['poblacion','comunidad',año]) 
 ```
 ### Cambiar los indices numericos por letras
-```bash
+```python
 frame2 = DataFrame(data, columns=['año', 'comunidad', 'población', 'deuda'],index=['uno', 'dos', 'tres', 'cuatro', 'cinco']) 
 ```
 ### Recuperar una columna
-```bash
+```python
 frame2['comunidad']
 frame2.comunidad
 ```
 ### Recuperar una fila
-```bash
+```python
 frame2.loc['tres']
 frame2['comunidad'].iloc[3] 
 ```
 ### Modificar un dato
-```bash
+```python
 frame2.deuda = 3000
 ```
+## Reindexar (mover indices)
+```python
+frame2 = frame2.reindex(['dos', 'uno', 'tres', 'cinco', 'cuatro'])
+```
 ### Añadir una columna/fila** :
+
 - Asignando una columna que no existe
-```bash
+```python
 frame2['elecciones'] = False
 del frame2['elecciones'] ##Borras la columna
+frame2 = frame2.drop(1) ## Eliminar una fila por su indice
+frame2 = frame2.drop('elecciones', axis=1) ## Eliminar columna por su nombre
 ```
 ### Sumar totales por columna/fila** :  
-```bash
+```python
 frame2['deuda'].sum() ##por columna
 frame.iloc[2].sum() ##por fila
 frame2['deuda'].mean() ##Hacer media por columna
 ```
 ### Renombrar una columna
-```bash
+```python
 df.rename(columns={"Tipo consumo": "Tipo", "Consumo (kwh)": "kwh"}, inplace=True)
 ```
 
