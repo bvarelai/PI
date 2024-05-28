@@ -10,7 +10,11 @@ El `$` es el fin de una lineas o string pero en BREs solo es metacaracter al fin
 El `\n` hace referencia a lo que esta entre parentesis (la repite).  
 El `{n,m }` se repite hace que se repita entre n y m veces.  
 Con EREs se pueden agrupar expresiones regukares usando `( y )` y tambien se pueden  
-utilizar diferentes alternativas como (0|1). Ademas los `^` y `$` son metacaracteres en EREs.
+utilizar diferentes alternativas como (0|1). Ademas los `^` y `$` son metacaracteres en EREs.  
+Tambien `>` se usa para redirigir la salida de un comando y el `<` para la entrada de un comando  
+Ejemplos `echo "Hello, world!" > example.txt` o `cat < example.txt`, que es lo mismo que `cat example.txt`  
+Diferentes es por ejemplo este comando `user=$(cut -d ":" -f 1 <<< $l);`, donde pasa el contenido de la variable $1 como entrada estándar al comando cut.  
+Tambien el `2> /dev/null` hace que cualquier salida de error (stderr) se vaya a /dev/null
 ### Lo basico
 #### Comando sed
 - Comando con el que sustituyes valores en ficheros de texto
